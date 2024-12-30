@@ -53,5 +53,17 @@ The following diagram shows how it will look like our final data models, splited
 - **raw**
 - **staging**
 - **marts**
+- **reporting**
 
 ![Diagram about data models layers](../img/data-models-layers.png)
+
+## Reporting Layer
+Added reporting layer with two views:
+ - **rep_channel_effectiveness**
+ - **rep_customer_responsiveness**
+
+Descriptions added in each reporting model sql.
+
+
+
+All models executed successfully, with dbt run --no-version-check 

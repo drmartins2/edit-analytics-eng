@@ -1,0 +1,99 @@
+version: 2
+
+models:
+  - name: rep_customer_responsiveness
+    description: Reporting table to analyze the aggregated data to show segment size and average response rate for each combination of age group, gender, and income group.
+    columns:
+      - name: age_group
+        description: Aggregated age intervals as Young(<30), Middle-aged (between 30 and 50) and Senior (>50).
+        data_type: text
+        data_tests:
+          - not_null
+          - accepted_values:
+              values:
+                - Young
+                - Middle-aged
+                - Senior
+      - name: gender
+        description: Customer gender (Male, Female or Other).
+        data_type: text
+        data_tests:
+          - not_null
+          - accepted_values:
+              values:
+                - Male
+                - Female
+                - Other
+      - name: income_group
+        description: Customer income group aggregation by Low (<50000), Medium (between 50000 and 100000) and High (>100000).
+        data_type: text
+        data_tests:
+          - not_null
+          - accepted_values:
+              values:
+                - Low
+                - Medium
+                - High
+      - name: segment_size
+        description: Count of customers of each segment.
+        data_type: integer
+        data_tests:
+          - not_null
+      - name: avg_response_rate
+        description: Average calculation for each segment in percentage (AVG(offers_completed * 100.0 / NULLIF(total_offers_received, 0))).
+        data_type: numeric
+        data_tests:
+          - not_null
+      - name: reporting_date
+        description: Audit column with report generation datetime.
+        data_type: timestamp
+        data_tests:
+          - not_null
+  
+
+
+  - name: rep_channel_effectiveness
+    description: Reporting table to analyze which communication channels have the highest engagement and conversion rates for promotional offers.
+    columns:
+      - name: channel
+        description: Different channel types where offers are distributed.
+        data_type: text
+        data_tests:
+          - not_null
+          - accepted_values:
+              values:
+                - web
+                - social
+                - mobile
+                - email
+      - name: offers_received
+        description: Total number of offers.
+        data_type: integer
+        data_tests:
+          - not_null
+      - name: offers_viewed
+        description: Total number of offers that were viewed by the customer.
+        data_type: integer
+        data_tests:
+          - not_null
+      - name: offers_completed
+        description: Total number of offers that were engaged by the customer.
+        data_type: integer
+        data_tests:
+          - not_null
+      - name: view_rate
+        description: Rate of offers viewed.
+        data_type: numeric
+        data_tests:
+          - not_null
+      - name: completion_rate
+        description: Rate of offers that resulted in transactions.
+        data_type: numeric
+        data_tests:
+          - not_null
+      - name: reporting_date
+        description: Audit column with report generation datetime.
+        data_type: timestamp
+        data_tests:
+          - not_null
+    
